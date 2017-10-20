@@ -21,7 +21,7 @@ transporter.verify((err, succ) => {
     }
 });
 
-function sendMail(nameFrom, emailFrom, messageFrom, mailTo, successCb, errorCb) {
+function sendMail(nameFrom, emailFrom, messageFrom, mailTo) {
 
     const mail = {
         from: `"${nameFrom}" <${emailFrom}>`,
@@ -30,17 +30,17 @@ function sendMail(nameFrom, emailFrom, messageFrom, mailTo, successCb, errorCb) 
         text: messageFrom,
     };
 
-    transporter.sendMail(mail, (error, success) => {
-        if (error) {
-            errorCb();
-            return;
-        }
-        successCb();
-    })
+    return transporter.sendMail(mail)
 };
 
 function contactFormSubmit(nameFrom, emailFrom, messageFrom, successCb, errorCb) {
-    sendMail(nameFrom, emailFrom, messageFrom, emailData.address, sendMail(emailData.name, emailData.address, emailData.messages.confirm, emailFrom, successCb, errorCb), errorCb);
+
+    sendMail(nameFrom, emailFrom, messageFrom, emailData.address)
+        .then(
+            sendMail(emailData.name, emailData.address, emailData.messages.confirm, emailFrom).then(successCb, errorCb),
+            errorCb
+        )
+
 };
 
 module.exports = {
