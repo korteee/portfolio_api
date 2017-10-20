@@ -1,15 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const mailController = require('./mail.controller');
+const mailValidator = require('./../../middlewares/validator').mail();
 
-router.post('/', (req, res) => {
-    if (Object.keys(req.body).length) {
-        mailController.sendMail(req.body.name, req.body.email, req.body.message, 'korte.stavros@hotmail.com', () => {
-            res.sendStatus(200);
-        }, () => {
-            res.sendStatus(500);
-        })
-    }
+console.log("Mail ready")
+
+router.post('/', mailValidator, (req, res) => {
+    
+    const mailTo = 'korte.stavros@hotmail.com';
+    const {name,email,message} = req.body;
+    
+    mailController.sendMail(name, email, message, mailTo, () => {
+        res.sendStatus(200);
+    }, () => {
+        res.boom.internal();
+    })
 })
 
 module.exports = router;

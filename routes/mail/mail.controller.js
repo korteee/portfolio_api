@@ -3,9 +3,7 @@ const emailCredentials =  require('./../../email.credentials.json');
 
 
 const transporter = nodemailer.createTransport({
-    service: "Outlook365",
-    host: 'smtp-mail.outlook.com',
-    port: 587,
+    service: "Gmail",
     auth: {
         user: emailCredentials.username,
         pass: emailCredentials.password
