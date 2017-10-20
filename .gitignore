@@ -2,4 +2,4 @@ node_modules
 cloudinary.credentials.json
 email.credentials.json
 uploads
-common/credentials.consant.js
+common/credentials.constant.js
