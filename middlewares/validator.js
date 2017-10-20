@@ -1,6 +1,8 @@
 const validator = require('validator');
 const models = require('./../models');
-const ResponseMessages = require('./../common/requestmessages.constant');
+const ResponseMessages = require('./../constants/requestmessages.constant');
+const recaptchaSecret = require('./../constants/credentials.constant').recaptch;
+const request = require('request');
 
 function defaultValidator(model) {
     return function (req, res, next) {
@@ -18,14 +20,15 @@ function defaultValidator(model) {
 function mailValidator() {
     return function (req, res, next) {
 
-        const requiredFields = ['name', 'email', 'message'];
+        const requiredFields = ['name', 'email', 'message', 'g-recaptcha-response'];
         const requestBody = Object.keys(req.body);
 
 
         if (!requestBody.length) return res.boom.badRequest(ResponseMessages.badReq.noArgs);
 
+
         for (const key of requiredFields) {
-            if (!requestBody.includes(key)) {
+            if (!requestBody.includes(key) || !requestBody[key]) {
                 return res.boom.badRequest(ResponseMessages.badReq.missingArgs);
             };
         }
@@ -34,7 +37,22 @@ function mailValidator() {
             return res.boom.badRequest(ResponseMessages.badData.invalid.email);
         };
 
-        next();
+
+        request(`https://www.google.com/recaptcha/api/siteverify`, {
+            method: 'POST',
+            qs: {
+                secret: recaptchaSecret,
+                response: req.body['g-recaptcha-response']
+            }
+        }, (err, resp, body) => {
+            if (err) return res.boom.internal();
+
+            body = JSON.parse(body);
+
+            if (!body.success) return res.boom.unauthorized();
+
+            next();
+        })
     }
 };
 

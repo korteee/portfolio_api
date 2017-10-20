@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
-const emailCredentials = require('./../../common/credentials.constant').email;
+const emailCredentials = require('./../../constants/credentials.constant').email;
+const emailData = require('./../../constants/email.constant');
 
 
 const transporter = nodemailer.createTransport({
@@ -25,7 +26,7 @@ function sendMail(nameFrom, emailFrom, messageFrom, mailTo, successCb, errorCb) 
     const mail = {
         from: `"${nameFrom}" <${emailFrom}>`,
         to: Array.isArray(mailTo) ? mailTo.join(', ') : mailTo,
-        subject: `Message from Korte's Official  Website`,
+        subject: emailData.title,
         text: messageFrom,
     };
 
@@ -38,6 +39,11 @@ function sendMail(nameFrom, emailFrom, messageFrom, mailTo, successCb, errorCb) 
     })
 };
 
+function contactFormSubmit(nameFrom, emailFrom, messageFrom, successCb, errorCb) {
+    sendMail(nameFrom, emailFrom, messageFrom, emailData.address, sendMail(emailData.name, emailData.address, emailData.messages.confirm, emailFrom, successCb, errorCb), errorCb);
+};
+
 module.exports = {
-    sendMail
-}
+    sendMail,
+    contactFormSubmit
+};
