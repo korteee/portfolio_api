@@ -1,5 +1,5 @@
-const projectModel = require('./../../models').Project;
-const technology = require('./../../models').Technology;
+const projectModel = require('./../../../models').Project;
+const technology = require('./../../../models').Technology;
 
 module.exports = new class {
     all(queryParams, cb) {

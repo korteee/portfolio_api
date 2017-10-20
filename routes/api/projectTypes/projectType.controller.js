@@ -1,4 +1,4 @@
-const ptModel = require('./../../models').ProjectType;
+const ptModel = require('./../../../models').ProjectType;
 
 module.exports = new class {
     all(queryParams, cb, ISErrorCb) {

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const ProjectController = require('./project.controller');
-const upload = require('./../../middlewares/upload');
-const sendOnCloudinary = require('./../../middlewares/sendOnCloudinary');
-const validate = require('./../../middlewares/validator').default;
+const upload = require('./../../../middlewares/upload');
+const sendOnCloudinary = require('./../../../middlewares/sendOnCloudinary');
+const validate = require('./../../../middlewares/validator').default;
 
 router.get('/', validate('Project'), (req, res) => {
     ProjectController.all(req.query, (projects) => {

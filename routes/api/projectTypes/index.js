@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ProjectTypeController = require('./projectType.controller');
-const validate = require('./../../middlewares/validator').default;
+const validate = require('./../../../middlewares/validator').default;
 
 
 router.get('/', validate('ProjectType'), (req, res) => {

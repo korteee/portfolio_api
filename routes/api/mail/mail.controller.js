@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
-const emailCredentials = require('./../../constants/credentials.constant').email;
-const emailData = require('./../../constants/email.constant');
+const emailCredentials = require('./../../../constants/credentials.constant').email;
+const emailData = require('./../../../constants/email.constant');
 
 
 const transporter = nodemailer.createTransport({

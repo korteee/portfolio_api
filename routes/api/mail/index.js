@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mailController = require('./mail.controller');
-const mailValidator = require('./../../middlewares/validator').mail();
+const mailValidator = require('./../../../middlewares/validator').mail();
 
 router.post('/', mailValidator, (req, res) => {
     
