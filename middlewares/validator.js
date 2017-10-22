@@ -1,7 +1,7 @@
 const validator = require('validator');
 const models = require('./../models');
 const ResponseMessages = require('./../constants/requestmessages.constant');
-const recaptchaSecret = require('./../constants/credentials.constant').recaptch;
+const recaptchaSecret = require('./../constants/credentials.constant').recaptcha.secret;
 const request = require('request');
 
 function defaultValidator(model) {
@@ -21,14 +21,14 @@ function mailValidator() {
     return function (req, res, next) {
 
         const requiredFields = ['name', 'email', 'message', 'g-recaptcha-response'];
-        const requestBody = Object.keys(req.body);
+        const requestBodyKeys = Object.keys(req.body);
 
 
-        if (!requestBody.length) return res.boom.badRequest(ResponseMessages.badReq.noArgs);
+        if (!requestBodyKeys.length) return res.boom.badRequest(ResponseMessages.badReq.noArgs);
 
 
         for (const key of requiredFields) {
-            if (!requestBody.includes(key) || !requestBody[key]) {
+            if (!requestBodyKeys.includes(key) || !req.body[key]) {
                 return res.boom.badRequest(ResponseMessages.badReq.missingArgs);
             };
         }
