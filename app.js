@@ -6,15 +6,19 @@ const express = require('express'),
 	bodyParser = require('body-parser'),
 	cors = require('cors'),
 	boom = require('express-boom'),
-	models = require('./models');
+	mongoose = require('mongoose'),
+	models = require('./models'),
+	app = express();
 
-const app = express();
+mongoose.connect("mongodb://localhost/portfolio-website", {
+	useMongoClient: true
+});
+
 app.engine('.hbs', handlebars({ extname: '.hbs' }));
 
-app.set('views', __dirname);
+app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', '.hbs');
-app.use(express.static(path.join(__dirname, 'client')));
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 app.use(bodyParser.json());

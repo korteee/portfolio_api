@@ -4,7 +4,15 @@ const websiteController = require('./website.controller');
 const recaptchaSiteCode = require('./../../constants/credentials.constant').recaptcha.site;
 
 router.get('/', (req, res) => {
-    res.render('index', {title:`Hi from Korte`, recaptchaSiteCode})
+	websiteController.getSiteContent((content) => {
+		res.render('index', Object.create({
+			content,
+			recaptchaSiteCode
+		}))
+	}, (err) => {
+		res.boom.internal();
+	})
 })
+
 
 module.exports = router;

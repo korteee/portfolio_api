@@ -4,11 +4,11 @@ const appDir = path.dirname(require.main.filename);
 const fs = require('fs');
 const cloudinaryCredentials = require('./../constants/credentials.constant').cloudinary;
 
-cloudinary.config({
-    cloud_name: cloudinaryCredentials.name,
-    api_key: cloudinaryCredentials.key,
-    api_secret: cloudinaryCredentials.secret
-});
+// cloudinary.config({
+//     cloud_name: cloudinaryCredentials.name,
+//     api_key: cloudinaryCredentials.key,
+//     api_secret: cloudinaryCredentials.secret
+// });
 
 module.exports = new class SendOnCloudinary {
     constructor() {

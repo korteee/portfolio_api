@@ -3,5 +3,5 @@ cloudinary.credentials.json
 email.credentials.json
 uploads
 constants/credentials.constant.js
-client
-index.hbs
+public/*
+!public/index.hbs

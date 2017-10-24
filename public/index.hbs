@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stavros Kortesas - Web Developer</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- endinject -->
+
+</head>
+
+<body scroll="no">
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <nav class="menu">
+        <button class="menu-toggle-button"></button>
+        <ul class="menu__list">
+            <li>
+                <a id="home-button" class="menu__item menu__item-active" href="#">{{content.navigation.home}}</a>
+            </li>
+            <li>
+                <a id="about-button" class="menu__item" href="#">{{content.navigation.about}}</a>
+            </li>
+            <li>
+                <a id="skills-button" class="menu__item" href="#">{{content.navigation.skills}}</a>
+            </li>
+            <li>
+                <a id="projects-button" class="menu__item" href="#">{{content.navigation.projects}}</a>
+            </li>
+            <li>
+                <a id="contact-button" class="menu__item" href="#">{{content.navigation.contact}}</a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div id="wrapper">
+        <main>
+
+            <!--Stavros Kortesas - Front End Developer - Section -->
+            <section id="home" class="slide slide-home">
+
+                <div class="slide__content slide__content-home">
+                    <div>
+                        <h1>{{content.slides.home.title}}</h1>
+                        <h4>{{content.slides.home.subTitle}}</h4>
+                        <button id="viewProjectsButton" class="btn btn-white" type="button">{{content.slides.home.buttonText}}</button>
+                    </div>
+
+                    <div>
+                        <button id="scroller" class="scroller" type="button"></button>
+                    </div>
+                </div>
+
+
+
+            </section>
+            <!--Stavros Kortesas - Front End Developer - Section /-->
+
+
+            <!--About Me-->
+            <section id="about" class="slide slide-about slide-grey">
+
+
+                <div class="profile-picture">
+                    <img src="img/stavros_kortesas.jpg" alt="stavros_kortesas">
+                </div>
+
+                <div class="slide__content slide__content-about">
+                    <div class="article">
+                        <h2 class="article__title">{{content.slides.about.title}}</h2>
+
+                        <p class="article__content">{{content.slides.about.description.p1}}</p>
+
+                        <p class="article__content">{{content.slides.about.description.p2}}</p>
+
+                        <button id="letsTalkButton" class="btn btn-dark article__button">{{content.slides.about.buttonText}}</button>
+                    </div>
+                </div>
+
+
+            </section>
+            <!--About Me /-->
+
+            <!--Skills-->
+            <section id="skills" class="slide slide-white">
+                <div class="slide__content">
+
+
+                    <div class="article slide__content-top">
+                        <h2 class="article__title">{{content.slides.skills.title}}</h2>
+                        <p class="article__content">{{content.slides.skills.description}}</p>
+                    </div>
+
+
+
+                    <div class="row divider divider__big hidden-landscape">
+                        {{#each content.slides.skills.categories}}
+                        <div class="col-md-4">
+                            <div class="list">
+                                <div class="list__title">
+                                    <h5>{{this.title}}</h5>
+                                </div>
+
+                                <div class="list__content">
+                                    <ul>
+                                        {{#each this.skillsList}}
+                                        <li>{{this}}</li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+
+                </div>
+            </section>
+            <!--Skills/-->
+
+            <!--projects-->
+            <section id="projects" class="slide slide-portfolio slide-grey">
+                <div class="slide__content slide__content-portfolio">
+                    <div class="article slide__content-top">
+                        <h2 class="article__title">{{content.slides.projects.title}}</h2>
+                        <p class="article__content">{{content.slides.projects.description}}</p>
+                    </div>
+                </div>
+
+                <div class="projects  hidden-landscape">
+                    <div class="masonry">
+
+                        {{#each content.slides.projects.list}}
+                        <div class="masonry__item">
+
+                            <div class="img-overlay">
+                                <div class="img-overlay__content img-overlay__content-white">
+                                    <h6 class="img-overlay__title">
+                                        {{this.title}}
+                                    </h6>
+                                    <small class="img-overlay__description">Click for details</small>
+                                </div>
+                            </div>
+                            <img src="{{this.thumbnailUrl}}" alt="{{this.title}}">
+
+                        </div>
+                        {{/each}}
+                    
+                    </div>
+                </div>
+
+            </section>
+            <!--Portfolio/-->
+
+            <!--Contact-->
+            <section id="contact" class="slide slide-white slide-contact">
+
+                <div class="slide__content">
+
+                    <div class="article slide__content-contact slide__content-top">
+                        <h2 class="article__title">{{content.slides.contact.title}}</h2>
+                        <p class="article__content">
+                           {{content.slides.contact.description}}
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
+                            <h4 class="divider divider__normal">Tell me about your upcoming project!</h4>
+
+                            <form id="contactForm" class="form">
+                                <input name="name" class="form__input form__input-left" placeholder="Your Name*" type="text">
+                                <input name="email" class="form__input form__input-right" placeholder="Your Email*" type="text">
+                                <textarea name="message" class="form__input form__input-bottom no-resizable" rows="5" placeholder="Share Your Thoughts*"></textarea>
+
+                                <div class="g-recaptcha divider__small" data-sitekey="{{this.recaptchaSiteCode}}"></div>
+
+                                <button class="btn btn-dark form__input-bottom" type="submit">Send Message</button>
+
+                                <ul class="inline-list inline-list-right icon-link hidden-portrait">
+                                    <li class="inline-list__item icon-links__icon icon-links__icon-dark icon-links__icon-clear">
+                                        <a href="{{content.socialMediaLinks.github}}" target="_blank">
+                                            <span class="socicon-github"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="inline-list__item icon-links__icon icon-links__icon-dark icon-links__icon-clear">
+                                        <a href="{{content.socialMediaLinks.stackoverflow}}" target="_blank">
+                                            <span class="socicon-stackoverflow"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="inline-list__item icon-links__icon icon-links__icon-dark icon-links__icon-clear">
+                                        <a href="{{content.socialMediaLinks.linkedin}}" target="_blank">
+                                            <span class="socicon-linkedin"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </form>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 social hidden-landscape">
+                            <h4 class="divider divider__normal">Get Me in Social Networks</h4>
+
+                            <div>
+                                <ul class="icon-links">
+                                    <li class="icon-links__icon icon-links__icon-dark">
+                                        <a href="{{content.socialMediaLinks.github}}" target="_blank">
+                                            <span class="socicon-github"></span>
+                                        </a>
+                                    </li>
+                                    <li class="icon-links__icon icon-links__icon-dark">
+                                        <a href="{{content.socialMediaLinks.stackoverflow}}" target="_blank">
+                                            <span class="socicon-stackoverflow"></span>
+                                        </a>
+                                    </li>
+                                    <li class="icon-links__icon icon-links__icon-dark">
+                                        <a href="{{content.socialMediaLinks.linkedin}}" target="_blank">
+                                            <span class="socicon-linkedin"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <!--Contact/-->
+        </main>
+        <footer>
+            <small>© 2016. All rights reserved.</small>
+        </footer>
+    </div>
+
+    <div id="projects-modal" class="my-modal">
+
+        <div class="my-modal__content">
+
+            <button id="projects-modal-close" class="btn btn-dark my-modal__content-close"></button>
+
+            <div class="slider__controls">
+                <button id="prev-project-button" class="btn btn-dark slider__controls-left"></button>
+                <button id="next-project-button" class="btn btn-dark slider__controls-right"></button>
+            </div>
+
+            <div id="scroll-slider-wrapper">
+
+                <div class="slider">
+
+                    {{#each content.slides.projects.list}}
+                    <div class="slider__slide">
+                        <div class="my-modal__content-header">
+                            <h3>{{this.title}}</h3>
+                        </div>
+
+                        <div class="my-modal__content-body">
+
+                            <ul class="info-list divider divider__15">
+                                <li class="info-list__item">
+                                    <span class="info-list__item-key">Client:</span>
+                                    <span class="info-list__item-value">{{this.client}}</span>
+                                </li>
+                                <li class="info-list__item">
+                                    <span class="info-list__item-key">Project Type:</span>
+                                    <span class="info-list__item-value">{{this.type}}</span>
+                                </li>
+                                <li class="info-list__item">
+                                    <span class="info-list__item-key">Project Url:</span>
+                                    <span class="info-list__item-value">
+                                        <a href="{{this.link.url}}" target="_blank">{{this.link.title}}</a>
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <div class="img-wrapper">
+                                <img src="{{this.imgUrl}}" alt="{{this.title}}">
+                            </div>
+
+                            <div class="project-description">
+
+                                <div class="project-description__details list">
+                                    <div class="project-description__details-title">
+                                        <h5>
+                                            Project Details
+                                        </h5>
+                                    </div>
+                                    <p class="project-description__details-content">
+                                        {{this.description}}
+                                    </p>
+                                </div>
+
+                                <div class="project-description__technologies list">
+                                    <div class="list__title">
+                                        <h5>Technologies Used</h5>
+                                    </div>
+                                    <div class="list__content">
+                                        <ul>
+                                            {{#each this.technologies}}
+                                            <li>{{this}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="my-modal__content-footer">
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- inject:js -->
+    <script src="scripts.js"></script>
+    <!-- endinject -->
+    <!--End-->
+
+
+
+</body>
+
+</html>
