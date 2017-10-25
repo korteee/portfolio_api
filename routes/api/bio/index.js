@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Bio = require('./bio.controller');
-const badReqValidate = require('./../../../middlewares/validator').badRequest.bio();
+const rules = require('./../../../constants/model.rules.constant').bio;
+const badReqValidate = require('./../../../middlewares/validator').badRequest(rules);
 
 router.get('/', (req, res) => {
 

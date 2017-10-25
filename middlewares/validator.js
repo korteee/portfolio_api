@@ -39,18 +39,30 @@ function mailValidator() {
 	}
 };
 
-const badRequestValidator = {
-	bio: () => {
-		const Bio = require('./../models/bio.model');
-		return function(req, res, next) {
-			const newBio = new Bio({ title: req.body.title, description: req.body.description });
-			newBio.validate((err) => {
-				if (err) {
+const badRequestValidator = function(modelRules) {
+	return function(req, res, next) {
+
+		const modelProperties = Object.keys(modelProperties);
+		const body = req.body;
+
+		modelProperties.forEach(function(property) {
+
+			if (modelRules[property].required && !body[property]) {
+				return res.boom.badRequest();
+			};
+
+			if (modelRules[property].type === "array") {
+				if (!Array.isArray(body[property])) {
 					return res.boom.badRequest();
 				};
-				next();
-			})
-		}
+			} else {
+				if (typeof body[property] !== modelRules[property].type) {
+					return res.boom.badRequest();
+				};
+			};
+
+		})
+
 	}
 }
 
