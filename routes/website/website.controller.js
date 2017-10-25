@@ -1,4 +1,4 @@
-const WebsiteContent = require('./../../mongo_models/korte-website.model');
+const WebsiteContent = require('./../../models/korte-website.model');
 
 const websiteController = {
 	getSiteContent: function(successCb, errorCb) {

@@ -5,7 +5,8 @@ const requestMessages = Object.freeze({
     },
     badData: {
         invalid: {
-            email: "EMAIL IS INVALID"
+            email: "EMAIL IS INVALID",
+            description: "DESCRIPTION MUST BE AN ARRAY OF STRINGS"
         }
     }
 });

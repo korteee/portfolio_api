@@ -7,7 +7,6 @@ const express = require('express'),
 	cors = require('cors'),
 	boom = require('express-boom'),
 	mongoose = require('mongoose'),
-	models = require('./models'),
 	app = express();
 
 mongoose.connect("mongodb://localhost/portfolio-website", {
@@ -26,14 +25,9 @@ app.use(boom());
 
 app.use('/', require('./routes/website'));
 
-app.use('/api/projects', require('./routes/api/projects'));
-app.use('/api/projectTypes', require('./routes/api/projectTypes'));
 app.use('/api/mail', require('./routes/api/mail'));
+app.use('/api/bio', require('./routes/api/bio'));
 
-// models.sequelize.sync({
-//     force: false
-// }).then(() => {
 
-// })
 
 app.listen('3000', () => console.log("I'm up and running"));

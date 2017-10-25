@@ -185,11 +185,11 @@
                             <h4 class="divider divider__normal">Tell me about your upcoming project!</h4>
 
                             <form id="contactForm" class="form">
-                                <input name="name" class="form__input form__input-left" placeholder="Your Name*" type="text">
-                                <input name="email" class="form__input form__input-right" placeholder="Your Email*" type="text">
-                                <textarea name="message" class="form__input form__input-bottom no-resizable" rows="5" placeholder="Share Your Thoughts*"></textarea>
+                                <input name="name" class="form__input form__input-left" placeholder="Your Name*" type="text" required>
+                                <input name="email" class="form__input form__input-right" placeholder="Your Email*" type="email" required>
+                                <textarea name="message" class="form__input form__input-bottom no-resizable" rows="5" placeholder="Share Your Thoughts*" required></textarea>
 
-                                <div class="g-recaptcha divider__small" data-sitekey="{{this.recaptchaSiteCode}}"></div>
+                                <div class="g-recaptcha divider__small" data-sitekey="{{this.recaptchaSiteCode}}" data-callback="validateRecaptcha"></div>
 
                                 <button class="btn btn-dark form__input-bottom" type="submit">Send Message</button>
 
