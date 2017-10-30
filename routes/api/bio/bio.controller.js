@@ -9,7 +9,8 @@ function create(bio, successCb, errorCb) {
 	newBio.save(function(err, newBio) {
 
 		if (err) {
-			errorCb();
+			const isValidationError = err.name === 'ValidationError';
+			errorCb(isValidationError);
 			return;
 		};
 

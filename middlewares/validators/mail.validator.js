@@ -1,6 +1,6 @@
 const validator = require('validator');
-const ResponseMessages = require('./../constants/requestmessages.constant');
-const recaptchaSecret = require('./../constants/credentials.constant').recaptcha.secret;
+const ResponseMessages = require('./../../constants/requestmessages.constant');
+const recaptchaSecret = require('./../../constants/credentials.constant').recaptcha.secret;
 const request = require('request');
 
 function mailValidator() {
@@ -39,34 +39,4 @@ function mailValidator() {
 	}
 };
 
-const badRequestValidator = function(modelRules) {
-	return function(req, res, next) {
-
-		const modelProperties = Object.keys(modelProperties);
-		const body = req.body;
-
-		modelProperties.forEach(function(property) {
-
-			if (modelRules[property].required && !body[property]) {
-				return res.boom.badRequest();
-			};
-
-			if (modelRules[property].type === "array") {
-				if (!Array.isArray(body[property])) {
-					return res.boom.badRequest();
-				};
-			} else {
-				if (typeof body[property] !== modelRules[property].type) {
-					return res.boom.badRequest();
-				};
-			};
-
-		})
-
-	}
-}
-
-module.exports = {
-	mail: mailValidator,
-	badRequest: badRequestValidator
-}
+module.exports = mailValidator;

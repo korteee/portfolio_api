@@ -9,6 +9,7 @@ const express = require('express'),
 	mongoose = require('mongoose'),
 	app = express();
 
+mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/portfolio-website", {
 	useMongoClient: true
 });
@@ -27,7 +28,5 @@ app.use('/', require('./routes/website'));
 
 app.use('/api/mail', require('./routes/api/mail'));
 app.use('/api/bio', require('./routes/api/bio'));
-
-
 
 app.listen('3000', () => console.log("I'm up and running"));

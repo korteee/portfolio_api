@@ -85,9 +85,9 @@
                     <div class="article">
                         <h2 class="article__title">{{content.slides.about.title}}</h2>
 
-                        <p class="article__content">{{content.slides.about.description.p1}}</p>
-
-                        <p class="article__content">{{content.slides.about.description.p2}}</p>
+                        {{#each content.slides.about.description}}
+                        <p class="article__content">{{this}}</p>
+                        {{/each}}
 
                         <button id="letsTalkButton" class="btn btn-dark article__button">{{content.slides.about.buttonText}}</button>
                     </div>
@@ -161,7 +161,7 @@
 
                         </div>
                         {{/each}}
-                    
+
                     </div>
                 </div>
 
@@ -176,7 +176,7 @@
                     <div class="article slide__content-contact slide__content-top">
                         <h2 class="article__title">{{content.slides.contact.title}}</h2>
                         <p class="article__content">
-                           {{content.slides.contact.description}}
+                            {{content.slides.contact.description}}
                         </p>
                     </div>
 
@@ -187,7 +187,8 @@
                             <form id="contactForm" class="form">
                                 <input name="name" class="form__input form__input-left" placeholder="Your Name*" type="text" required>
                                 <input name="email" class="form__input form__input-right" placeholder="Your Email*" type="email" required>
-                                <textarea name="message" class="form__input form__input-bottom no-resizable" rows="5" placeholder="Share Your Thoughts*" required></textarea>
+                                <textarea name="message" class="form__input form__input-bottom no-resizable" rows="5" placeholder="Share Your Thoughts*"
+                                    required></textarea>
 
                                 <div class="g-recaptcha divider__small" data-sitekey="{{this.recaptchaSiteCode}}" data-callback="validateRecaptcha"></div>
 

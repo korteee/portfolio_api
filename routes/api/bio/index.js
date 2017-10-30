@@ -1,19 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const Bio = require('./bio.controller');
-const rules = require('./../../../constants/model.rules.constant').bio;
-const badReqValidate = require('./../../../middlewares/validator').badRequest(rules);
+const validator = require('./../../../middlewares/validators/bio.validator').create();
 
 router.get('/', (req, res) => {
 
 })
 
-router.post('/', badReqValidate, (req, res) => {
+router.post('/', validator, (req, res) => {
 	Bio.create(req.body,
 		() => {
 			res.sendStatus(200);
 		},
-		res.boom.internal);
+		(validationError) => {
+			if (validationError) {
+				return res.boom.badRequest();
+			};
+			res.boom.internal();
+		});
 })
 
 router.put('/', (req, res) => {

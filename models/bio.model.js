@@ -2,20 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const requestMessages = require('./../constants/requestmessages.constant');
 
-function atLeastOne(inputs) {
-	return Array.isArray(inputs) && !!inputs.length;
+const pararaph = {
+	type: String,
+	maxlength: 350
 };
 
 const bio = {
 	title: {
 		type: String,
 		required: true,
-		maxlength: 15
+		minlength:5,
+		maxlength: 30
 	},
 	description: {
-		type: Array,
+		type: [pararaph],
+		required: true,
 		validate: {
-			validator: atLeastOne,
+			validator: function(desc) {
+				return desc.length <= 3 && desc.length >= 1;
+			},
 			message: requestMessages.badData.invalid.description
 		}
 	}
