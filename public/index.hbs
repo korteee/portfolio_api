@@ -109,9 +109,9 @@
 
 
 
-                    <div class="row divider divider__big hidden-landscape">
+                    <div class="divider divider-big hidden-landscape">
                         {{#each content.slides.skills.categories}}
-                        <div class="col-md-4">
+                        <div>
                             <div class="list">
                                 <div class="list__title">
                                     <h5>{{this.title}}</h5>
@@ -180,9 +180,9 @@
                         </p>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6">
-                            <h4 class="divider divider__normal">Tell me about your upcoming project!</h4>
+                    <div class="form-wrapper">
+                        <div class="form-container">
+                            <h4 class="divider divider-normal">Tell me about your upcoming project!</h4>
 
                             <form id="contactForm" class="form">
                                 <input name="name" class="form__input form__input-left" placeholder="Your Name*" type="text" required>
@@ -190,7 +190,7 @@
                                 <textarea name="message" class="form__input form__input-bottom no-resizable" rows="5" placeholder="Share Your Thoughts*"
                                     required></textarea>
 
-                                <div class="g-recaptcha divider__small" data-sitekey="{{this.recaptchaSiteCode}}" data-callback="validateRecaptcha"></div>
+                                <div class="g-recaptcha divider-small" data-sitekey="{{this.recaptchaSiteCode}}" data-callback="validateRecaptcha"></div>
 
                                 <button class="btn btn-dark form__input-bottom" type="submit">Send Message</button>
 
@@ -218,8 +218,8 @@
 
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-6 social hidden-landscape">
-                            <h4 class="divider divider__normal">Get Me in Social Networks</h4>
+                        <div class="social hidden-landscape">
+                            <h4 class="divider divider-normal">Get Me in Social Networks</h4>
 
                             <div>
                                 <ul class="icon-links">
@@ -277,7 +277,7 @@
 
                         <div class="my-modal__content-body">
 
-                            <ul class="info-list divider divider__15">
+                            <ul class="info-list divider divider-15">
                                 <li class="info-list__item">
                                     <span class="info-list__item-key">Client:</span>
                                     <span class="info-list__item-value">{{this.client}}</span>

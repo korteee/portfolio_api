@@ -5,3 +5,4 @@ uploads
 constants/credentials.constant.js
 public/*
 !public/index.hbs
+!public/img
