@@ -7,13 +7,15 @@ const mailController = {
 	contactFormSubmit
 };
 
-const transporter = nodemailer.createTransport({
-	host: "smtp.gmail.com",
+const transporter = nodemailer.createTransport("SMTP", {
+	service: "Gmail",
 	port: 465,
 	secure: true,
 	auth: {
 		user: emailCredentials.username,
-		pass: emailCredentials.password
+		clientId: emailCredentials.clientId,
+		clientSecret: emailCredentials.clientSecret,
+		refreshToken: emailCredentials.refreshToken
 	}
 });
 
